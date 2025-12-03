@@ -3,7 +3,7 @@ Contributors: sjconsultinggroup
 Tags: woocommerce, shipping, table rate, asia, postal, ems, shipping zones
 Requires at least: 5.6
 Tested up to: 6.4
-Stable tag: 2.3.2
+Stable tag: 2.8.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -135,6 +135,22 @@ Service Selector: Choosing between EMS and ePacket for Thailand Post.
 Checkout Experience: Displaying carrier icons next to shipping rates.
 
 == Changelog ==
+
+= 2.8.3 =
+
+Feature: Added real-time currency symbol updates. The "Total", "Cost", "Base", and "+/kg" headers now display the correct carrier currency (e.g., ฿, Rp, ¥) immediately upon selection.
+
+Fix: Refined currency logic to fallback gracefully if a custom carrier is used.
+
+= 2.8.1 - 2.8.2 =
+
+Security: Fixed a DOM-based XSS vulnerability in the admin settings panel (CVE-2024-XXXX).
+
+Fix: Resolved an issue where alphanumeric postcodes (e.g., UK/Canada) could cause logic errors in range checks.
+
+Fix: Added strict validation for CSV file uploads to prevent errors during import.
+
+UX: Added success/error notices for CSV import actions.
 
 = 2.3.2 =
 
