@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Asia Postal & Table Rate Shipping (Fixed)
+ * Plugin Name: Asia Postal & Table Rate Shipping 
  * Plugin URI:  https://example.com/asia-post-shipping
  * Description: A specialized shipping method for Asian Postal Carriers (Japan Post, China Post, Pos Indonesia, etc.) featuring a tree-table rate logic engine.
  * Version:     2.9.4
