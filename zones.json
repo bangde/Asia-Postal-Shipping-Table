@@ -101,6 +101,18 @@
             {"label": "Registered Mail Zone 3 (EU & NA)", "country": "US, CA, GB, FR, DE, IT, ES", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "14-30 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Registered Mail Zone 4 (Oceania & Africa)", "country": "AU, NZ, ZA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "14-30 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Registered Mail Zone 5 (Rest of World)", "country": "*", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "30+ Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_regular": [
+            {"label": "Java & Bali (Domestic)", "country": "ID", "state": "ID-JK, ID-JB, ID-JT, ID-JI, ID-YO, ID-BT, ID-BA", "postcode": "*", "shipping_class": "*", "delivery_time": "2-4 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Sumatra (Domestic)", "country": "ID", "state": "ID-AC, ID-SU, ID-SB, ID-RI, ID-JA, ID-SS, ID-BE, ID-LA, ID-BB, ID-KR", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Kalimantan (Domestic)", "country": "ID", "state": "ID-KB, ID-KT, ID-KS, ID-KI, ID-KU", "postcode": "*", "shipping_class": "*", "delivery_time": "3-6 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Sulawesi (Domestic)", "country": "ID", "state": "ID-SA, ID-ST, ID-SG, ID-SR, ID-SN, ID-GO", "postcode": "*", "shipping_class": "*", "delivery_time": "4-7 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Papua & Maluku (Domestic)", "country": "ID", "state": "ID-MA, ID-MU, ID-PA, ID-PB", "postcode": "*", "shipping_class": "*", "delivery_time": "5-10 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Nusa Tenggara (Domestic)", "country": "ID", "state": "ID-NB, ID-NT", "postcode": "*", "shipping_class": "*", "delivery_time": "4-7 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_express": [
+            {"label": "Java & Bali (Express)", "country": "ID", "state": "ID-JK, ID-JB, ID-JT, ID-JI, ID-YO, ID-BT, ID-BA", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Major Cities (Express)", "country": "ID", "state": "ID-SU, ID-SB, ID-RI, ID-KB, ID-KS, ID-SN", "postcode": "*", "shipping_class": "*", "delivery_time": "1-3 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "phlpost": {
