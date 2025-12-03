@@ -13,6 +13,10 @@
             {"label": "ePacket Tier 2", "country": "CN, ID, JP, KR, PH", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "3-9 Days", "base_cost": 0, "per_kg": 0},
             {"label": "ePacket Tier 3", "country": "IN, LK, MV", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-14 Days", "base_cost": 0, "per_kg": 0},
             {"label": "ePacket Tier 4", "country": "TR, SA, AE", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-14 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_ems": [
+            {"label": "Bangkok & Vicinity", "country": "TH", "state": "TH-10, TH-11, TH-12, TH-13, TH-73, TH-74", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+            {"label": "Upcountry (Other Provinces)", "country": "TH", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-3 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "hongkong_post": {
@@ -50,6 +54,12 @@
             {"label": "Zone 3 (Europe/Oceania)", "country": "GB, FR, DE, AU, NZ", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-14 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Zone 4 (USA)", "country": "US", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-14 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Zone 5 (Africa/SA)", "country": "BR, ZA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "10-20 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_yu_pack": [
+            {"label": "Local (Same Prefecture)", "country": "JP", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+            {"label": "Regional (Nearby Prefectures)", "country": "JP", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "National (Distant Prefectures)", "country": "JP", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Okinawa & Islands", "country": "JP", "state": "JP-47", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "singpost": {
@@ -57,6 +67,9 @@
             {"label": "Zone A (Malaysia)", "country": "MY", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "6-9 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Zone B (Asia)", "country": "BN, CN, HK, ID, KR, PH, TW, TH, VN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "6-10 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Zone C (Rest of Asia/Oceania)", "country": "AU, IN, JP, NZ", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "6-12 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_speedpost": [
+            {"label": "Islandwide (Singapore)", "country": "SG", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "china_post": {
@@ -64,6 +77,11 @@
             {"label": "Group 1 (Neighbors)", "country": "HK, MO, TW, KP, KR, JP, MN, VN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "5-10 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Group 2 (SE Asia)", "country": "MY, SG, TH, PH, ID, KH, LA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-15 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Group 3 (South Asia/Oceania)", "country": "AU, NZ, IN, PK, LK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-15 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_ems": [
+            {"label": "Intra-Province", "country": "CN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Inter-Province (Nearby)", "country": "CN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Inter-Province (Remote)", "country": "CN", "state": "CN-54, CN-65, CN-63", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "pos_malaysia": {
@@ -72,6 +90,12 @@
             {"label": "Zone 2 (Neighbors)", "country": "BN, TH, ID, VN, KH, PH, MM, LA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "5-8 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Zone 3 (Asia Pacific)", "country": "CN, HK, TW, MO, JP, KR, AU, NZ", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "6-11 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Zone 4 (South Asia/Mid East)", "country": "BD, IN, LK, PK, SA, AE, TR", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-14 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_pos_laju": [
+            {"label": "Zone 1 (Klang Valley / Intra-City)", "country": "MY", "state": "MY-10, MY-14", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Zone 2 (Peninsular Malaysia)", "country": "MY", "state": "MY-01, MY-02, MY-03, MY-04, MY-05, MY-06, MY-07, MY-08, MY-09, MY-11", "postcode": "*", "shipping_class": "*", "delivery_time": "1-3 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Zone 3 (Sarawak)", "country": "MY", "state": "MY-13", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Zone 4 (Sabah & Labuan)", "country": "MY", "state": "MY-12, MY-15", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "india_post": {
@@ -79,6 +103,11 @@
             {"label": "Country Group 1 (SAARC)", "country": "AF, BD, BT, MV, NP, PK, LK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "5-10 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Country Group 2 (Gulf/SE Asia)", "country": "AE, QA, OM, KW, BH, SA, TH, SG, MY, ID", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-12 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Country Group 3 (Rest of Asia)", "country": "CN, JP, KR, HK, TW", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "10-15 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_speed_post": [
+            {"label": "Local (Within City)", "country": "IN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Metro to Metro", "country": "IN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Rest of India", "country": "IN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "pos_indonesia": {
@@ -129,6 +158,75 @@
             {"label": "Registered Mail Zone 2 (East Asia)", "country": "CN, HK, JP, KR, TW", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-14 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Registered Mail Zone 3 (Europe)", "country": "GB, DE, FR, ES, IT", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "10-20 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Registered Mail Zone 4 (US/Canada)", "country": "US, CA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "15-25 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_ems": [
+            {"label": "Local (Same City/Province)", "country": "PH", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Domestic Express (Other Province)", "country": "PH", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "korea_post_kr": {
+        "domestic_parcel": [
+            {"label": "Mainland (Standard)", "country": "KR", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Jeju & Remote Islands", "country": "KR", "state": "KR-49", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "vietnam_post": {
+        "domestic_standard": [
+            {"label": "Intra-Province", "country": "VN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Inter-Province (North <-> North)", "country": "VN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Inter-Province (North <-> South)", "country": "VN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "4-6 Days", "base_cost": 0, "per_kg": 0}
+        ],
+        "domestic_express": [
+            {"label": "Express (Major Cities)", "country": "VN", "state": "VN-HN, VN-SG, VN-DN", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "emirates_post": {
+        "domestic_premium": [
+            {"label": "Same Day (City Limits)", "country": "AE", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "Same Day", "base_cost": 0, "per_kg": 0},
+            {"label": "Next Day (National)", "country": "AE", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "saudi_post": {
+        "domestic_parcel": [
+            {"label": "Riyadh / Jeddah / Dammam", "country": "SA", "state": "SA-01, SA-02, SA-04", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Other Regions", "country": "SA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "ptt_turkey": {
+        "domestic_cargo": [
+            {"label": "Within Province", "country": "TR", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+            {"label": "Inter-Province (Short Distance)", "country": "TR", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Inter-Province (Long Distance)", "country": "TR", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-4 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "srilanka_post": {
+        "domestic_speed_post": [
+            {"label": "Colombo City Limits", "country": "LK", "state": "LK-11", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+            {"label": "Outstation", "country": "LK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "pakistan_post": {
+        "domestic_ums": [
+            {"label": "Local (Within District)", "country": "PK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+            {"label": "City to City", "country": "PK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "chunghwa_post": {
+        "domestic_parcel": [
+            {"label": "Mainland Taiwan", "country": "TW", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Offshore Islands (Kinmen/Matsu/Penghu)", "country": "TW", "state": "*", "postcode": "8*, 9*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "mongol_post": {
+        "domestic_parcel": [
+            {"label": "Ulaanbaatar City", "country": "MN", "state": "MN-1", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+            {"label": "Aimags (Provinces)", "country": "MN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "3-5 Days", "base_cost": 0, "per_kg": 0}
+        ]
+    },
+    "macau_post": {
+        "domestic_mail": [
+            {"label": "Macau Peninsula", "country": "MO", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Taipa & Coloane", "country": "MO", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0}
         ]
     }
 }
