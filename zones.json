@@ -87,7 +87,9 @@
         "air_parcel": [
             {"label": "Group 1 (Neighbors)", "country": "HK, MO, TW, KP, KR, JP, MN, VN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "5-10 Days", "base_cost": 0, "per_kg": 0},
             {"label": "Group 2 (SE Asia)", "country": "MY, SG, TH, PH, ID, KH, LA", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-15 Days", "base_cost": 0, "per_kg": 0},
-            {"label": "Group 3 (South Asia/Oceania)", "country": "AU, NZ, IN, PK, LK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-15 Days", "base_cost": 0, "per_kg": 0}
+            {"label": "Group 3 (South Asia/Oceania)", "country": "AU, NZ, IN, PK, LK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "7-15 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Group 4 (Europe/USA/Canada)", "country": "US, CA, GB, FR, DE, GR, IT, ES, NL, BE, CH, SE, NO, DK, FI, AT, PT, IE, RU", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "10-20 Days", "base_cost": 0, "per_kg": 0},
+            {"label": "Group 5 (Rest of World)", "country": "*", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "15-30 Days", "base_cost": 0, "per_kg": 0}
         ],
         "domestic_ems": [
             {"label": "Intra-Province", "country": "CN", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
