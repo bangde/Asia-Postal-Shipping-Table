@@ -47,7 +47,9 @@
             {"label": "Speedpost Zone 4 (EU/NA/Oceania)", "country": "US, CA, GB, FR, DE, AU, NZ", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "3-7 Days", "base_cost": 0, "per_kg": 0}
         ],
         "local_mail": [
-             {"label": "Local Mail (Hong Kong)", "country": "HK", "state": "*", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0}
+             {"label": "Hong Kong Island & Kowloon", "country": "HK", "state": "HK-HK, HK-KL", "postcode": "*", "shipping_class": "*", "delivery_time": "1 Day", "base_cost": 0, "per_kg": 0},
+             {"label": "New Territories (NT)", "country": "HK", "state": "HK-NT", "postcode": "*", "shipping_class": "*", "delivery_time": "1-2 Days", "base_cost": 0, "per_kg": 0},
+             {"label": "Outlying Islands", "country": "HK", "state": "HK-IS", "postcode": "*", "shipping_class": "*", "delivery_time": "2-3 Days", "base_cost": 0, "per_kg": 0}
         ]
     },
     "japan_post": {
