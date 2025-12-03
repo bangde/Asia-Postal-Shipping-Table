@@ -666,6 +666,23 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     input[name="rule_base_weight[]"] { max-width: 60px !important; text-align: center; }
                     #asia-bulk-actions { float: left; margin-right: 10px; display: none; }
                     .country-cell { min-width: 150px; }
+                    
+                    /* TOOLTIP FIX: Force tooltips to display ABOVE the icon */
+                    .woocommerce-help-tip:after {
+                        bottom: 120%; /* Push up above the icon */
+                        top: auto;    /* Reset default top positioning */
+                        left: 50%;
+                        transform: translateX(-50%);
+                        margin-bottom: 10px; /* Add spacing from icon */
+                    }
+                    /* Arrow pointing down */
+                    .woocommerce-help-tip:before {
+                        bottom: 120%;
+                        top: auto;
+                        left: 50%;
+                        transform: translateX(-50%) translateY(5px) rotate(45deg);
+                        margin-bottom: 5px; 
+                    }
                     </style>
 
                     <div class="asia-shipping-wrapper">
@@ -827,9 +844,13 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                                 <label for="asia_test_weight" style="font-weight:bold; display:block;"><?php esc_html_e('Weight (kg)', 'Asia-Postal-Shipping'); ?></label>
                                 <input type="number" id="asia_test_weight" step="0.01" value="1" style="width: 100px;">
                             </div>
-                            <div>
-                                <label for="asia_test_country" style="font-weight:bold; display:block;"><?php esc_html_e('Country Code', 'Asia-Postal-Shipping'); ?></label>
-                                <input type="text" id="asia_test_country" value="US" style="width: 60px; text-transform: uppercase;" placeholder="US">
+                            <div style="min-width: 200px;">
+                                <label for="asia_test_country" style="font-weight:bold; display:block;"><?php esc_html_e('Destination Country', 'Asia-Postal-Shipping'); ?></label>
+                                <!-- CHANGED: Replaced text input with select for better UX -->
+                                <select id="asia_test_country" style="width: 100%;" class="wc-enhanced-select">
+                                    <option value=""><?php esc_html_e('Select a country...', 'Asia-Postal-Shipping'); ?></option>
+                                    <!-- Options populated via JS -->
+                                </select>
                             </div>
                             <div>
                                 <button type="button" id="asia_test_btn" class="button button-secondary"><?php esc_html_e('Calculate Cost', 'Asia-Postal-Shipping'); ?></button>
@@ -896,6 +917,28 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                         $('#asia-import-form-wrapper').appendTo('body');
                         function initTooltips() { $(document.body).trigger('init_tooltips'); }
                         initTooltips();
+                        
+                        // --- NEW: Initialize Test Calculator Country Select ---
+                        var $testCountrySelect = $('#asia_test_country');
+                        
+                        // Populate select with countries from asia_countries_data
+                        $.each(asia_countries_data, function(code, name) {
+                            $testCountrySelect.append($('<option>', { 
+                                value: code,
+                                text: name // WooCommerce countries list usually just has names, flags added via Select2 if desired or just rely on text search
+                            })); 
+                        });
+
+                        // Initialize Select2 for searchable dropdown
+                        // Use WC's enhanced select if available, or standard Select2
+                        if ( $.fn.select2 ) {
+                            $testCountrySelect.select2({
+                                placeholder: "<?php esc_html_e('Select a country...', 'Asia-Postal-Shipping'); ?>",
+                                allowClear: true,
+                                width: '100%'
+                            });
+                        }
+                        // --- END NEW ---
 
                         $('#asia_post_rules_tbody').sortable({
                             handle: '.asia-sort-handle', cursor: 'move', axis: 'y',
@@ -1369,7 +1412,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                         // --- LIVE CALCULATOR LOGIC ---
                         $('#asia_test_btn').click(function() {
                             var testWeight = parseFloat($('#asia_test_weight').val()) || 0;
-                            var testCountry = $('#asia_test_country').val().toUpperCase().trim();
+                            
+                            // CHANGED: Get value from select instead of text input
+                            var testCountry = $('#asia_test_country').val(); 
+                            
+                            if (!testCountry) {
+                                alert("<?php esc_html_e('Please select a destination country.', 'Asia-Postal-Shipping'); ?>");
+                                return;
+                            }
+                            
                             var exchangeRate = parseFloat($('#' + exchange_rate_field_id).val());
                             if(isNaN(exchangeRate) || exchangeRate <= 0) exchangeRate = 1;
 
