@@ -264,8 +264,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                             'type'              => 'number',
                             'custom_attributes' => array( 'step' => '0.000001' ),
                             'default'           => '1',
-                            // UPDATED: Added colored HTML for better visibility as per request
-                            'description'       => __( '<span style="color:#d63638; font-weight:bold;">⚠️ IMPORTANT:</span> If your store currency is different from the carrier currency, you <strong style="color:#2271b1;">MUST</strong> enter the multiplier here. <br/>Example: Store is USD, Carrier is THB (Baht). Rate = 0.028.', 'Asia-Postal-Shipping' ),
+                            // UPDATED: Added link to XE.com as requested
+                            'description'       => __( '<span style="color:#d63638; font-weight:bold;">⚠️ IMPORTANT:</span> If your store currency is different from the carrier currency, you <strong style="color:#2271b1;">MUST</strong> enter the multiplier here. <br/>Example: Store is USD, Carrier is THB (Baht). Rate = 0.028. <br/> <a href="https://www.xe.com/currencyconverter/" target="_blank" style="text-decoration:none;">Check latest rates on XE.com <span class="dashicons dashicons-external"></span></a>', 'Asia-Postal-Shipping' ),
                             'desc_tip'          => false, // False ensures description displays inline
                         ),
                         'custom_carrier_label' => array(
