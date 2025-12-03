@@ -3,7 +3,7 @@ Contributors: sjconsultinggroup
 Tags: woocommerce, shipping, table rate, asia, postal, ems, shipping zones
 Requires at least: 5.6
 Tested up to: 6.4
-Stable tag: 2.8.3
+Stable tag: 2.9.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,6 +17,10 @@ Asia Postal & Table Rate Shipping is the ultimate solution for WooCommerce store
 It replaces complex coding with a simple, logic-based table that allows you to define rules based on Weight, Cart Total, Item Quantity, and Shipping Class.
 
 🚀 Key Features
+
+💱 Currency Conversion & Exchange Rate: Easily handle cross-currency shipping. If your store is in USD but you ship via Thailand Post (THB), simply enter the exchange rate (e.g., 0.028) and the plugin handles the math automatically.
+
+🇹🇭 Local Currency Display with Flags: The shipping rules table now intelligently displays the correct local currency symbol (e.g., ฿, Rp, ¥) and country flag for the selected carrier, making data entry clear and error-free.
 
 🔃 Drag-and-Drop Reordering: Easily prioritize your rules by dragging rows up or down. Essential for complex logic stacks (First Match Wins).
 
@@ -84,6 +88,19 @@ Click Edit to configure your rates and carrier branding.
 
 == Frequently Asked Questions ==
 
+= How do I use the Exchange Rate feature? =
+If your store currency (e.g., USD) differs from your carrier's rate currency (e.g., Thai Baht):
+
+Select your carrier (e.g., Thailand Post).
+
+The table will show columns in Baht (฿).
+
+Enter your rates in Baht as provided by the post office.
+
+In the "Exchange Rate" field, enter the multiplier to convert 1 Baht to USD (approx 0.028).
+
+At checkout, the customer will see the converted USD price.
+
 = How do I prioritize rules? =
 The plugin processes rules from Top to Bottom. The first rule that matches the cart conditions "wins" (unless "Show All Rates" is enabled). You can use the drag handle on the left of each row to reorder them instantly.
 
@@ -136,7 +153,13 @@ Checkout Experience: Displaying carrier icons next to shipping rates.
 
 == Changelog ==
 
-= 2.8.3 =
+= 2.9.1 =
+
+Feature: Added country flags (e.g., 🇹🇭, 🇯🇵) next to currency symbols in the rules table for better visual identification.
+
+= 2.9.0 =
+
+Feature: Added "Exchange Rate" field. Allows users to input rates in local carrier currency (e.g., THB) and automatically convert them to store currency (e.g., USD) at checkout.
 
 Feature: Added real-time currency symbol updates. The "Total", "Cost", "Base", and "+/kg" headers now display the correct carrier currency (e.g., ฿, Rp, ¥) immediately upon selection.
 
@@ -144,7 +167,7 @@ Fix: Refined currency logic to fallback gracefully if a custom carrier is used.
 
 = 2.8.1 - 2.8.2 =
 
-Security: Fixed a DOM-based XSS vulnerability in the admin settings panel (CVE-2024-XXXX).
+Security: Fixed a DOM-based XSS vulnerability in the admin settings panel.
 
 Fix: Resolved an issue where alphanumeric postcodes (e.g., UK/Canada) could cause logic errors in range checks.
 
