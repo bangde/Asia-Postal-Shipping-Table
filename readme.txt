@@ -3,7 +3,7 @@ Contributors: sjconsultinggroup
 Tags: woocommerce, shipping, table rate, asia, postal, ems, shipping zones
 Requires at least: 5.6
 Tested up to: 6.4
-Stable tag: 2.9.1
+Stable tag: 2.9.3
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,6 +19,8 @@ It replaces complex coding with a simple, logic-based table that allows you to d
 🚀 Key Features
 
 💱 Currency Conversion & Exchange Rate: Easily handle cross-currency shipping. If your store is in USD but you ship via Thailand Post (THB), simply enter the exchange rate (e.g., 0.028) and the plugin handles the math automatically.
+
+⚠️ Smart Currency Warnings: The plugin now intelligently warns you if you select a foreign carrier (e.g., Japan Post) but forget to set an exchange rate, preventing costly pricing errors.
 
 🇹🇭 Local Currency Display with Flags: The shipping rules table now intelligently displays the correct local currency symbol (e.g., ฿, Rp, ¥) and country flag for the selected carrier, making data entry clear and error-free.
 
@@ -93,7 +95,7 @@ If your store currency (e.g., USD) differs from your carrier's rate currency (e.
 
 Select your carrier (e.g., Thailand Post).
 
-The table will show columns in Baht (฿).
+The table will show columns in Baht (฿) with the Thai flag.
 
 Enter your rates in Baht as provided by the post office.
 
@@ -152,6 +154,16 @@ Service Selector: Choosing between EMS and ePacket for Thailand Post.
 Checkout Experience: Displaying carrier icons next to shipping rates.
 
 == Changelog ==
+
+= 2.9.3 =
+
+Feature: Smart Warnings. Added logic to only show the "Exchange Rate Warning" if the selected carrier's currency differs from the WooCommerce store currency.
+
+= 2.9.2 =
+
+UX: Enhanced the "Exchange Rate" field description with colored, bold text to ensure visibility for new users.
+
+Feature: Added a dynamic red warning alert that appears instantly if a user selects a foreign carrier but leaves the exchange rate at "1".
 
 = 2.9.1 =
 
