@@ -3,7 +3,7 @@
  * Plugin Name: Asia Postal & Table Rate Shipping (Fixed)
  * Plugin URI:  https://example.com/asia-post-shipping
  * Description: A specialized shipping method for Asian Postal Carriers (Japan Post, China Post, Pos Indonesia, etc.) featuring a tree-table rate logic engine.
- * Version:     2.8.3
+ * Version:     2.9.1
  * Author:      S.J Consulting Group Asia
  * Author URI:  https://google.com
  * Text Domain: Asia-Postal-Shipping
@@ -259,6 +259,14 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                             'options'     => $carrier_options,
                             'desc_tip'    => true,
                         ),
+                        'exchange_rate' => array(
+                            'title'             => __( 'Exchange Rate', 'Asia-Postal-Shipping' ),
+                            'type'              => 'number',
+                            'custom_attributes' => array( 'step' => '0.000001' ),
+                            'default'           => '1',
+                            'description'       => __( 'Multiplier to convert the carrier rate to your store currency. Example: If rules are in THB and store is USD, enter 0.028. Leave as 1 if currencies match.', 'Asia-Postal-Shipping' ),
+                            'desc_tip'          => true,
+                        ),
                         'custom_carrier_label' => array(
                             'title'       => __( 'Custom Carrier Name', 'Asia-Postal-Shipping' ),
                             'type'        => 'text',
@@ -313,7 +321,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                             'title'       => sprintf( __( 'Handling / Service Fee (%s)', 'Asia-Postal-Shipping' ), $currency_symbol ),
                             'type'        => 'price',
                             'default'     => '0',
-                            'description' => __( 'A fixed fee added to the total shipping cost.', 'Asia-Postal-Shipping' ),
+                            'description' => __( 'A fixed fee added to the total shipping cost (in your store currency).', 'Asia-Postal-Shipping' ),
                             'desc_tip'    => true,
                         ),
                         'free_shipping_threshold' => array(
@@ -400,6 +408,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     $carrier_icon = $this->get_option( 'carrier_icon' );
                     $carrier_brand = $this->get_option( 'carrier_brand' );
                     $calculation_mode = $this->get_option( 'calculation_mode' );
+                    
+                    // --- EXCHANGE RATE LOGIC ---
+                    $exchange_rate = floatval( $this->get_option( 'exchange_rate' ) );
+                    if ( $exchange_rate <= 0 ) {
+                        $exchange_rate = 1;
+                    }
 
                     $icon_url = '';
                     if ( $carrier_brand === 'generic' ) {
@@ -455,7 +469,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
                     if ( $debug ) {
                         $class_list = empty($cart_classes) ? 'None' : implode(', ', array_unique($cart_classes));
-                        $this->debug_msg( "Dest: $destination_country | Items: $qty | W: $final_weight | Classes: $class_list" );
+                        $this->debug_msg( "Dest: $destination_country | Items: $qty | W: $final_weight | Classes: $class_list | Exch Rate: $exchange_rate" );
                     }
 
                     foreach ( $rules as $index => $rule ) {
@@ -516,9 +530,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                         $base_w = floatval( isset($rule['base_weight']) ? $rule['base_weight'] : 0 );
 
                         $chargeable_excess = max( 0, $final_weight - $base_w );
-                        $shipping_total = $base_c + ( $per_kg * $chargeable_excess ) + $handling_fee;
+                        $carrier_cost = $base_c + ( $per_kg * $chargeable_excess );
+                        
+                        // Apply Exchange Rate to Carrier Cost
+                        $converted_cost = $carrier_cost * $exchange_rate;
+                        
+                        // Add Handling Fee (assumed to be in store currency)
+                        $shipping_total = $converted_cost + $handling_fee;
 
-                        if($debug) $this->debug_msg("<strong>Rule #$rule_num MATCHED!</strong> Cost: $shipping_total");
+                        if($debug) $this->debug_msg("<strong>Rule #$rule_num MATCHED!</strong> Carrier Cost: $carrier_cost | Converted: $converted_cost | Total: $shipping_total");
 
                         $label = $icon_html . $this->title . ' (' . $rule['label'] . ')';
                         if ( ! empty( $rule['delivery_time'] ) ) $label .= ' (' . $rule['delivery_time'] . ')';
@@ -559,12 +579,24 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                         'emirates_post' => 'AED', 'ptt_turkey' => '₺', 'saudi_post' => 'SAR'
                     );
                     
+                    // --- FLAG LOGIC ---
+                    $carrier_flags = array(
+                        'china_post' => '🇨🇳', 'chunghwa_post' => '🇹🇼', 'hongkong_post' => '🇭🇰', 'japan_post' => '🇯🇵',
+                        'korea_post_kr' => '🇰🇷', 'macau_post' => '🇲🇴', 'mongol_post' => '🇲🇳',
+                        'phlpost' => '🇵🇭', 'pos_indonesia' => '🇮🇩', 'pos_malaysia' => '🇲🇾', 'singpost' => '🇸🇬',
+                        'thailand_post' => '🇹🇭', 'vietnam_post' => '🇻🇳',
+                        'india_post' => '🇮🇳', 'pakistan_post' => '🇵🇰', 'srilanka_post' => '🇱🇰',
+                        'emirates_post' => '🇦🇪', 'ptt_turkey' => '🇹🇷', 'saudi_post' => '🇸🇦'
+                    );
+                    
                     if ( isset( $carrier_currencies[ $saved_carrier ] ) ) {
-                        // Use carrier specific currency
+                        // Use carrier specific currency with flag
                         $currency_symbol = $carrier_currencies[ $saved_carrier ];
+                        $currency_flag = isset($carrier_flags[$saved_carrier]) ? $carrier_flags[$saved_carrier] : '';
                     } else {
                         // If Generic/Custom, default to empty to avoid showing wrong store currency (e.g. $)
                         $currency_symbol = ''; 
+                        $currency_flag = '';
                     }
                     // --- END CUSTOM CURRENCY LOGIC ---
 
@@ -707,7 +739,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     <span class="asia-header-label">
                     <?php 
                         esc_html_e('Total', 'Asia-Postal-Shipping');
-                        if ( ! empty( $currency_symbol ) ) echo ' (' . esc_html( $currency_symbol ) . ')';
+                        if ( ! empty( $currency_symbol ) ) echo ' (' . esc_html( $currency_flag . ' ' . $currency_symbol ) . ')';
                     ?>
                     </span>
                     <span class="woocommerce-help-tip" data-tip="<?php esc_attr_e('Apply rule only if cart total value is within this range.', 'Asia-Postal-Shipping'); ?>"></span>
@@ -724,7 +756,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     <span class="asia-header-label">
                     <?php 
                         esc_html_e('Cost', 'Asia-Postal-Shipping');
-                        if ( ! empty( $currency_symbol ) ) echo ' (' . esc_html( $currency_symbol ) . ')';
+                        if ( ! empty( $currency_symbol ) ) echo ' (' . esc_html( $currency_flag . ' ' . $currency_symbol ) . ')';
                     ?>
                     </span>
                     <span class="woocommerce-help-tip" data-tip="<?php esc_attr_e('Formula: Base Cost + (Per Kg * (Total Weight - Base Weight))', 'Asia-Postal-Shipping'); ?>"></span>
@@ -757,13 +789,13 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     <div class="asia-input-group"><span style="white-space:nowrap;" class="asia-label-base">
                     <?php 
                         esc_html_e( 'Base', 'Asia-Postal-Shipping' );
-                        echo ( ! empty( $currency_symbol ) ) ? ' (' . esc_html( $currency_symbol ) . '):' : ':';
+                        echo ( ! empty( $currency_symbol ) ) ? ' (' . esc_html( $currency_flag . ' ' . $currency_symbol ) . '):' : ':';
                     ?>
                     </span><input type="number" step="0.01" class="asia-rule-input asia-rule-small" name="rule_base_cost[]" value="<?php echo esc_attr( $rule['base_cost'] ); ?>"></div>
                     <div class="asia-input-group"><span style="white-space:nowrap;" class="asia-label-perkg">
                     <?php 
                         esc_html_e( '+ /kg', 'Asia-Postal-Shipping' );
-                        echo ( ! empty( $currency_symbol ) ) ? ' (' . esc_html( $currency_symbol ) . '):' : ':';
+                        echo ( ! empty( $currency_symbol ) ) ? ' (' . esc_html( $currency_flag . ' ' . $currency_symbol ) . '):' : ':';
                     ?>
                     </span><input type="number" step="0.01" class="asia-rule-input asia-rule-small" name="rule_per_kg[]" value="<?php echo esc_attr( $rule['per_kg'] ); ?>"></div>
                     </div></td>
@@ -791,6 +823,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                     var asia_presets = <?php echo json_encode( $presets ); ?>;
                     var asia_shipping_classes = <?php echo json_encode( $wc_shipping_classes ); ?>;
                     var asia_currencies = <?php echo json_encode( $carrier_currencies ); ?>;
+                    var asia_flags = <?php echo json_encode( $carrier_flags ); ?>;
 
                     // DYNAMIC IDs from PHP
                     var carrier_field_id = '<?php echo esc_js( $id_prefix . 'carrier_brand' ); ?>';
@@ -799,14 +832,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
                     // JS Currency Logic
                     var js_currency_symbol = '<?php echo esc_js( $currency_symbol ); ?>';
+                    var js_currency_flag = '<?php echo esc_js( $currency_flag ); ?>';
                     var js_base_label = '<?php echo esc_js( __( 'Base', 'Asia-Postal-Shipping' ) ); ?>';
                     var js_per_kg_label = '<?php echo esc_js( __( '+ /kg', 'Asia-Postal-Shipping' ) ); ?>';
                     var js_total_label = '<?php echo esc_js( __( 'Total', 'Asia-Postal-Shipping' ) ); ?>';
                     var js_cost_label = '<?php echo esc_js( __( 'Cost', 'Asia-Postal-Shipping' ) ); ?>';
                     
                     if ( js_currency_symbol !== '' ) {
-                        js_base_label += ' (' + js_currency_symbol + '):';
-                        js_per_kg_label += ' (' + js_currency_symbol + '):';
+                        js_base_label += ' (' + js_currency_flag + ' ' + js_currency_symbol + '):';
+                        js_per_kg_label += ' (' + js_currency_flag + ' ' + js_currency_symbol + '):';
                     } else {
                         js_base_label += ':';
                         js_per_kg_label += ':';
@@ -847,16 +881,17 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 
                             // Update Currency Symbols Live
                             var symbol = asia_currencies[selected] || '';
+                            var flag = asia_flags[selected] || '';
                             var newTotalText = asia_i18n.total;
                             var newCostText = asia_i18n.cost;
                             var newBaseLabel = '<?php echo esc_js( __( 'Base', 'Asia-Postal-Shipping' ) ); ?>';
                             var newPerKgLabel = '<?php echo esc_js( __( '+ /kg', 'Asia-Postal-Shipping' ) ); ?>';
 
                             if ( symbol !== '' ) {
-                                newTotalText += ' (' + symbol + ')';
-                                newCostText += ' (' + symbol + ')';
-                                newBaseLabel += ' (' + symbol + '):';
-                                newPerKgLabel += ' (' + symbol + '):';
+                                newTotalText += ' (' + flag + ' ' + symbol + ')';
+                                newCostText += ' (' + flag + ' ' + symbol + ')';
+                                newBaseLabel += ' (' + flag + ' ' + symbol + '):';
+                                newPerKgLabel += ' (' + flag + ' ' + symbol + '):';
                             } else {
                                 newBaseLabel += ':';
                                 newPerKgLabel += ':';
@@ -1229,9 +1264,6 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
                         serializeRules();
                     });
                     </script>
-                    </div>
-                    </td>
-                    </tr>
                     <?php
                     return ob_get_clean();
                 }
